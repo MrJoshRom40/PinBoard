@@ -1,0 +1,138 @@
+@import url("./styles/global.css");
+
+body {
+  background-color: #eadfb4;
+  margin: 0;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-rows: repeat(5, minmax(0, 1fr));
+  gap: 15px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* Tarjetas base */
+.container {
+  border-radius: 1rem;
+  background-color: var(--primary-color, #fffef5);
+  display: flex;
+  padding: 1rem;
+  box-shadow: 0 10px 30px rgba(246, 169, 122, 0.5);
+}
+
+/* Logo / título */
+div {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--tittle-font);
+  color: var(--primary-text-color);
+}
+
+h1 {
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  user-select: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Navegación: centrada horizontal y verticalmente, en columna */
+nav {
+  grid-column: 1;
+  grid-row: 2 / span 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centra verticalmente */
+  align-items: center; /* centra horizontalmente */
+  padding: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+nav a:hover,
+footer a:hover,
+nav a:focus-visible,
+footer a:focus-visible {
+  background-color: rgba(219, 107, 67, 0.15);
+  border-radius: 0.75rem;
+  outline: none;
+}
+
+nav a[aria-current="page"] {
+  background-color: rgba(219, 107, 67, 0.25);
+  border-radius: 0.75rem;
+  outline: none;
+}
+
+/* Imágenes de los iconos */
+nav img,
+footer img {
+  width: 4rem;
+  height: 4rem;
+  display: block;
+  user-select: none;
+}
+
+/* Contenido principal */
+main {
+  grid-column: 2 / span 4;
+  grid-row: 1 / span 5;
+  overflow-y: auto; /* scroll propio sin romper el layout */
+}
+
+/* Pie */
+footer {
+  grid-column: 1;
+  grid-row: 5;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  font-family: var(--text-font);
+  color: var(--primary-text-color);
+  font-size: larger;
+  font-weight: bolder;
+  user-select: none;
+}
+
+nav a {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* uno a la izquierda, otro a la derecha */
+  align-items: flex-start;
+  width: 100%; /* ocupa todo el ancho de main */
+  gap: 2rem;
+  padding: 0.5rem;
+  transition: background-color 0.15s ease;
+  user-select: none;
+}
+
+nav a p {
+  font-family: var(--text-font);
+  color: var(--primary-text-color);
+  font-size: larger;
+  text-align: left;
+  width: 100%;
+}
+
+#user-icon {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 100%;
+  object-fit: cover;
+  border: 2px solid var(--primary-text-color);
+}

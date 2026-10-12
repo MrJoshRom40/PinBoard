@@ -10,11 +10,12 @@ loginButton.addEventListener("click", (event) => {
 
   const users = JSON.parse(localStorage.getItem("users") || "[]");
 
-  const exists = users.some(
-    (user) => user.username === username && user.password === password,
+  const user = users.find(
+    (u) => u.username === username && u.password === password,
   );
 
-  if (exists) {
+  if (user) {
+    localStorage.setItem("currentUser", JSON.stringify(user));
     window.location.href = "../index.html";
   } else {
     Swal.fire({

@@ -1,11 +1,52 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="./index.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <title>Main page</title>
   </head>
   <body>
-    <h1>THIS IS THE MAIN PAGE</h1>
+    <div class="container">
+      <h1 id="logo">PinBoard</h1>
+    </div>
+    <nav class="container" aria-label="Navegación principal">
+      <ul role="list">
+        <a href="/">
+          <img src="./assets/svg/home_24dp_E3E3E3.svg" alt="home" />
+          <p>Home</p></a
+        >
+        <a href="/explore">
+          <img src="./assets/svg/explore_24dp_E3E3E3.svg" alt="explore" />
+          <p>Explore</p></a
+        >
+        <a href="/add">
+          <img
+            src="./assets/svg/add_circle_outline_24dp_E3E3E3.svg"
+            alt="add"
+          />
+          <p>Add</p></a
+        >
+        <a href="/dashboard">
+          <img
+            src="./assets/svg/space_dashboard_24dp_E3E3E3.svg"
+            alt="your dashoard"
+          />
+          <p>Dashboard</p></a
+        >
+      </ul>
+    </nav>
+
+    <main class="container"></main>
+
+    <footer class="container" id="userData">
+      <img id="user-icon" alt="User icon" />
+      <p id="username"></p>
+    </footer>
+    <script src="./index.js"></script>
   </body>
 </html>
