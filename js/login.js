@@ -16,7 +16,7 @@ loginButton.addEventListener("click", (event) => {
 
   if (user) {
     localStorage.setItem("currentUser", JSON.stringify(user));
-    window.location.href = "../index.html";
+    window.location.href = "./splash.html";
   } else {
     Swal.fire({
       icon: "error",

@@ -1,0 +1,40 @@
+@import url("../styles/global.css");
+
+body {
+  margin: 0; /* quita los 8px que causan scroll */
+  min-height: 100dvh; /* da altura para poder centrar verticalmente */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centra verticalmente */
+  align-items: center; /* centra horizontalmente */
+  text-align: center; /* centra el texto de varias líneas */
+  background-color: var(--primary-color);
+  color: var(--primary-text-color);
+  font-family: var(--tittle-font);
+}
+
+h1,
+p {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+h1 {
+  font-size: 10rem;
+  margin: 0;
+  text-shadow: 0.06em 0.06em 0.05em rgba(22, 58, 99, 0.35);
+}
+
+p {
+  font-size: 2rem;
+  text-shadow: 0.06em 0.06em 0.05em rgba(22, 58, 99, 0.35);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}

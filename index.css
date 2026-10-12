@@ -4,16 +4,29 @@ body {
   background-color: #eadfb4;
   margin: 0;
   min-height: 100dvh;
+  max-height: 100dvh;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   grid-template-rows: repeat(5, minmax(0, 1fr));
+  grid-template-areas:
+    "logo   main main main main"
+    "nav    main main main main"
+    "nav    main main main main"
+    "nav    main main main main"
+    "footer main main main main";
   gap: 15px;
   padding: 15px;
   box-sizing: border-box;
 }
 
+div {
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+}
+
 /* Tarjetas base */
 .container {
+  border: 2px solid var(--primary-text-color);
   border-radius: 1rem;
   background-color: var(--primary-color, #fffef5);
   display: flex;
@@ -21,36 +34,28 @@ body {
   box-shadow: 0 10px 30px rgba(246, 169, 122, 0.5);
 }
 
-/* Logo / título */
-div {
-  grid-column: 1;
-  grid-row: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--tittle-font);
-  color: var(--primary-text-color);
-}
-
+/* Logo / título (ya no afecta a los div de SweetAlert) */
 h1 {
+  grid-area: logo;
   text-align: center;
   width: 100%;
-  margin: 0;
-  user-select: none;
+  align-self: center;
+  font-family: var(--tittle-font);
+  color: var(--primary-text-color);
+  cursor: pointer;
 }
 
-a {
+nav a,
+footer a {
   text-decoration: none;
 }
 
-/* Navegación: centrada horizontal y verticalmente, en columna */
+/* Navegación */
 nav {
-  grid-column: 1;
-  grid-row: 2 / span 3;
-  display: flex;
+  grid-area: nav;
   flex-direction: column;
-  justify-content: center; /* centra verticalmente */
-  align-items: center; /* centra horizontalmente */
+  justify-content: center;
+  align-items: center;
   padding: 1rem;
 }
 
@@ -61,12 +66,26 @@ nav ul {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+nav a {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  transition: background-color 0.15s ease;
+  user-select: none;
 }
 
 nav a:hover,
-footer a:hover,
 nav a:focus-visible,
+footer a:hover,
 footer a:focus-visible {
   background-color: rgba(219, 107, 67, 0.15);
   border-radius: 0.75rem;
@@ -76,29 +95,36 @@ footer a:focus-visible {
 nav a[aria-current="page"] {
   background-color: rgba(219, 107, 67, 0.25);
   border-radius: 0.75rem;
-  outline: none;
 }
 
-/* Imágenes de los iconos */
+nav a p {
+  margin: 0;
+  font-family: var(--text-font);
+  color: var(--primary-text-color);
+  font-size: larger;
+  text-align: left;
+  width: 100%;
+}
+
 nav img,
 footer img {
   width: 4rem;
   height: 4rem;
   display: block;
   user-select: none;
+  -webkit-user-drag: none;
 }
 
 /* Contenido principal */
 main {
-  grid-column: 2 / span 4;
-  grid-row: 1 / span 5;
-  overflow-y: auto; /* scroll propio sin romper el layout */
+  grid-area: main;
+  min-height: 0;
+  overflow-y: auto;
 }
 
-/* Pie */
+/* Pie con datos del usuario */
 footer {
-  grid-column: 1;
-  grid-row: 5;
+  grid-area: footer;
   justify-content: center;
   align-items: center;
   gap: 2rem;
@@ -109,24 +135,8 @@ footer {
   user-select: none;
 }
 
-nav a {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between; /* uno a la izquierda, otro a la derecha */
-  align-items: flex-start;
-  width: 100%; /* ocupa todo el ancho de main */
-  gap: 2rem;
-  padding: 0.5rem;
-  transition: background-color 0.15s ease;
-  user-select: none;
-}
-
-nav a p {
-  font-family: var(--text-font);
-  color: var(--primary-text-color);
-  font-size: larger;
-  text-align: left;
-  width: 100%;
+footer p {
+  margin: 0;
 }
 
 #user-icon {
@@ -135,4 +145,102 @@ nav a p {
   border-radius: 100%;
   object-fit: cover;
   border: 2px solid var(--primary-text-color);
+}
+
+/* Tablet: barra lateral más compacta */
+@media (max-width: 1024px) {
+  nav img {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  nav a {
+    gap: 1rem;
+  }
+
+  nav a p,
+  footer {
+    font-size: medium;
+  }
+
+  #user-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}
+
+/* Móvil: cabecera arriba, contenido al centro, menú de iconos abajo */
+@media (max-width: 700px) {
+  body {
+    height: 100dvh;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+      "logo   footer"
+      "main   main"
+      "nav    nav";
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .container {
+    padding: 0.75rem;
+  }
+
+  .logo h1 {
+    text-align: left;
+    font-size: 1.5rem;
+  }
+
+  footer {
+    flex-direction: row;
+    gap: 0.75rem;
+  }
+
+  #user-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  nav {
+    flex-direction: row;
+    justify-content: center;
+    padding: 0.5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  nav ul {
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 0.25rem;
+  }
+
+  nav a {
+    width: auto;
+    padding: 0.4rem;
+  }
+
+  nav img {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  /* Oculta el texto visualmente, pero los lectores de pantalla lo siguen leyendo */
+  nav a p {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
 }
