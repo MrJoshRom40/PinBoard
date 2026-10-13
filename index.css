@@ -3,20 +3,26 @@
 body {
   background-color: #eadfb4;
   margin: 0;
-  min-height: 100dvh;
+
+  height: 100dvh;
+  min-height: 0;
   max-height: 100dvh;
+
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   grid-template-rows: repeat(5, minmax(0, 1fr));
+
   grid-template-areas:
     "logo   main main main main"
     "nav    main main main main"
     "nav    main main main main"
     "nav    main main main main"
     "footer main main main main";
+
   gap: 15px;
   padding: 15px;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 div {
@@ -25,7 +31,7 @@ div {
 }
 
 /* Tarjetas base */
-.container {
+.container, .pin-container {
   border: 2px solid var(--primary-text-color);
   border-radius: 1rem;
   background-color: var(--primary-color, #fffef5);
@@ -33,6 +39,7 @@ div {
   padding: 1rem;
   box-shadow: 0 10px 30px rgba(246, 169, 122, 0.5);
 }
+
 
 /* Logo / título (ya no afecta a los div de SweetAlert) */
 h1 {
@@ -118,8 +125,10 @@ footer img {
 /* Contenido principal */
 main {
   grid-area: main;
+  min-width: 0;
   min-height: 0;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* Pie con datos del usuario */
@@ -243,4 +252,33 @@ footer p {
     clip-path: inset(50%);
     white-space: nowrap;
   }
+}
+
+
+.pin-gallery {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 16px;
+
+  columns: 220px;
+  column-gap: 16px;
+}
+
+.pin {
+  width: 100%;
+  margin: 0 0 16px;
+  break-inside: avoid;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.pin-image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+  border-radius: 12px;
 }

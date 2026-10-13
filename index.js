@@ -1,10 +1,25 @@
+import { startLocalStorage } from "./storage/startLocalStorage.js";
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 const logo = document.getElementById("logo");
+const pin_template = document.querySelector("#pin-template");
+const pin_container = document.querySelector(".pin-gallery");
+const pins = JSON.parse(localStorage.getItem("pins") || "[]");
+console.log("Cantidad de pines:", pins.length);
+
+startLocalStorage();
 
 logo.addEventListener("click", (event) => {
   event.preventDefault();
   window.location.href = "/";
 });
+
+function createPinCard(pin) {
+    const clone = pin_template.content.cloneNode(true);
+    clone.querySelector(".pin-image").src = pin.image;
+    clone.querySelector(".pin-image").alt = pin.name;
+
+    return clone;
+}
 
 function startUserData() {
   if (!currentUser) {
@@ -30,6 +45,13 @@ function startUserData() {
 
   const usernameElement = document.getElementById("username");
   usernameElement.textContent = currentUser.username;
+
+
+  pins.forEach(p => {
+      pin_container.appendChild(createPinCard(p));
+  });
+   console.log(pins)
+
 }
 
 function addAdminOptions() {
@@ -55,3 +77,4 @@ startUserData();
 if (currentUser.type === "admin") {
   addAdminOptions();
 }
+
