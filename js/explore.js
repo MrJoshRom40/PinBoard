@@ -77,6 +77,73 @@ function toast(options) {
   });
 }
 
+/* ---------- Lógica compartida (menú contextual y Swal) ---------- */
+function getPinState(pin) {
+  pin.likes ??= [];
+  const creator = users.find((u) => u.id === pin.user);
+
+  return {
+    creator,
+    isOwn: pin.user === currentUser.id,
+    isLiked: pin.likes.includes(currentUser.id),
+    isSaved: currentUser.pinsSaved.includes(pin.id),
+    isFollowing: (creator?.followers ?? []).includes(currentUser.id),
+  };
+}
+
+function toggleLike(pin) {
+  pin.likes ??= [];
+  const now = toggleItem(pin.likes, currentUser.id);
+  savePins();
+  return now;
+}
+
+function toggleSave(pin) {
+  const now = toggleItem(currentUser.pinsSaved, pin.id);
+  saveCurrentUser();
+  return now;
+}
+
+function toggleFollow(creator) {
+  creator.followers ??= [];
+  const now = toggleItem(creator.followers, currentUser.id);
+  saveUsers();
+  return now;
+}
+
+// Etiquetas e iconos según el estado (los mismos para menú y Swal)
+function getActions(pin) {
+  const s = getPinState(pin);
+
+  return [
+    {
+      key: "like",
+      label: s.isLiked ? "Unlike" : "Like",
+      icon: s.isLiked ? "favorite" : "favorite_border",
+      active: s.isLiked,
+      disabled: false,
+    },
+    {
+      key: "save",
+      label: s.isSaved ? "Unsave" : "Save",
+      icon: s.isSaved ? "bookmark_remove" : "save_alt",
+      active: s.isSaved,
+      disabled: false,
+    },
+    {
+      key: "follow",
+      label: s.isOwn
+        ? "It's yours"
+        : s.isFollowing
+          ? "Unfollow creator"
+          : "Follow creator!",
+      icon: s.isFollowing ? "person_remove" : "person_add",
+      active: s.isFollowing,
+      disabled: s.isOwn || !s.creator,
+    },
+  ];
+}
+
 /* ---------- Eventos ---------- */
 logo.addEventListener("click", (event) => {
   event.preventDefault();
@@ -102,23 +169,15 @@ attachContextMenu(
     const pin = pins.find((p) => String(p.id) === pinEl.dataset.id);
     if (!pin) return [];
 
-    pin.likes ??= [];
-
-    const isOwn = pin.user === currentUser.id;
-    const isLiked = pin.likes.includes(currentUser.id);
-    const isSaved = currentUser.pinsSaved.includes(pin.id);
-    const creator = users.find((u) => u.id === pin.user);
-    const isFollowing = (creator?.followers ?? []).includes(currentUser.id);
-
-    console.log(pin);
+    const [like, save, follow] = getActions(pin);
+    const { creator } = getPinState(pin);
 
     return [
       {
-        label: isLiked ? "Unlike" : "Like",
-        icon: isLiked ? "favorite" : "favorite_border",
+        label: like.label,
+        icon: like.icon,
         action: () => {
-          const nowLiked = toggleItem(pin.likes, currentUser.id);
-          savePins();
+          const nowLiked = toggleLike(pin);
           toast({
             imageUrl: `../assets/svg/${nowLiked ? "like" : "unlike"}.svg`,
             imageWidth: 100,
@@ -129,11 +188,10 @@ attachContextMenu(
         },
       },
       {
-        label: isSaved ? "Unsave" : "Save",
-        icon: isSaved ? "bookmark_remove" : "save_alt",
+        label: save.label,
+        icon: save.icon,
         action: () => {
-          const nowSaved = toggleItem(currentUser.pinsSaved, pin.id);
-          saveCurrentUser();
+          const nowSaved = toggleSave(pin);
           toast({
             imageUrl: "../assets/svg/add_circle_outline_24dp_E3E3E3.svg",
             imageWidth: 100,
@@ -144,17 +202,11 @@ attachContextMenu(
         },
       },
       {
-        label: isOwn
-          ? "It's yours"
-          : isFollowing
-            ? "Unfollow creator"
-            : "Follow creator!",
-        icon: isFollowing ? "person_remove" : "person_add",
-        disabled: isOwn || !creator,
+        label: follow.label,
+        icon: follow.icon,
+        disabled: follow.disabled,
         action: () => {
-          creator.followers ??= [];
-          const nowFollowing = toggleItem(creator.followers, currentUser.id);
-          saveUsers();
+          const nowFollowing = toggleFollow(creator);
           toast({
             icon: "success",
             title: nowFollowing ? "Following!" : "Unfollowed",
@@ -165,6 +217,111 @@ attachContextMenu(
   },
   ".pin",
 );
+
+/* ---------- Swal de detalle del pin ---------- */
+// Todo se construye con DOM y textContent (los datos del pin los escribe el usuario)
+function el(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text !== undefined) node.textContent = text;
+  return node;
+}
+
+function openPinModal(pin) {
+  const { creator } = getPinState(pin);
+
+  const box = el("div", "pin-modal");
+
+  const img = el("img", "pin-modal__image");
+  img.src = pin.image;
+  img.alt = pin.name;
+
+  const body = el("div", "pin-modal__body");
+  body.append(
+    el("h3", "pin-modal__title", pin.name),
+    el("p", "pin-modal__description", pin.description),
+  );
+
+  const creatorLine = el("p", "pin-modal__creator", "By ");
+  creatorLine.append(el("strong", "", creator?.username ?? "Unknown user"));
+  body.append(creatorLine);
+
+  if (pin.categories?.length) {
+    const chips = el("div", "pin-modal__chips");
+    pin.categories.forEach((c) =>
+      chips.append(el("span", "pin-modal__chip", c)),
+    );
+    body.append(chips);
+  }
+
+  // Iconos de acción (esquina inferior derecha)
+  const footerRow = el("div", "pin-modal__footer");
+  const likesCount = el("span", "pin-modal__likes");
+  const actions = el("div", "pin-modal__actions");
+  footerRow.append(likesCount, actions);
+
+  const buttons = {};
+  ["like", "save", "follow"].forEach((key) => {
+    const btn = el("button", "pin-modal__action");
+    btn.type = "button";
+    const icon = el("span", "material-symbols-outlined");
+    icon.setAttribute("aria-hidden", "true");
+    btn.append(icon);
+    buttons[key] = { btn, icon };
+    actions.append(btn);
+  });
+
+  // Refresca iconos, textos y estados con las mismas condicionales del menú
+  function refresh() {
+    getActions(pin).forEach((a) => {
+      const { btn, icon } = buttons[a.key];
+      icon.textContent = a.icon;
+      btn.title = a.label;
+      btn.setAttribute("aria-label", a.label);
+      btn.disabled = a.disabled;
+      btn.classList.toggle("is-active", a.active);
+    });
+    likesCount.textContent = `${pin.likes.length} like${pin.likes.length === 1 ? "" : "s"}`;
+  }
+
+  buttons.like.btn.addEventListener("click", () => {
+    toggleLike(pin);
+    refresh();
+  });
+  buttons.save.btn.addEventListener("click", () => {
+    toggleSave(pin);
+    refresh();
+  });
+  buttons.follow.btn.addEventListener("click", () => {
+    if (!creator) return;
+    toggleFollow(creator);
+    refresh();
+  });
+
+  refresh();
+  box.append(img, body, footerRow);
+
+  Swal.fire({
+    html: box,
+    width: "42rem",
+    padding: 0,
+    heightAuto: false,
+    showConfirmButton: false,
+    showCloseButton: true,
+    background: "#fffdf5",
+    color: "#0f3c65",
+    customClass: { popup: "pin-modal-popup" },
+  });
+}
+
+// Clic en un pin (delegación sobre la galería)
+pin_container.addEventListener("click", (event) => {
+  const pinEl = event.target.closest(".pin");
+  if (!pinEl) return;
+
+  const pin = pins.find((p) => String(p.id) === pinEl.dataset.id);
+  if (pin) openPinModal(pin);
+});
 
 /* ---------- Pestañas de categorías ---------- */
 function renderTabs() {

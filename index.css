@@ -613,3 +613,124 @@ footer p {
   max-height: 420px;
   object-fit: contain;
 }
+
+/* Los pins ahora se pueden abrir con clic */
+.pin {
+  cursor: pointer;
+}
+
+/* ===== Swal de detalle del pin ===== */
+.pin-modal-popup {
+  overflow: hidden;
+  border: 2px solid var(--primary-text-color);
+  border-radius: 1rem;
+}
+
+.pin-modal {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-family: var(--text-font);
+  color: var(--primary-text-color);
+}
+
+.pin-modal__image {
+  display: block;
+  width: 100%;
+  max-height: 24rem;
+  object-fit: contain;
+  background: rgba(219, 107, 67, 0.08);
+}
+
+.pin-modal__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem 1.5rem 0.5rem;
+}
+
+.pin-modal__title {
+  margin: 0;
+  font-family: var(--tittle-font);
+  font-size: 1.75rem;
+}
+
+.pin-modal__description {
+  margin: 0;
+  opacity: 0.85;
+  overflow-wrap: anywhere;
+}
+
+.pin-modal__creator {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.pin-modal__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pin-modal__chip {
+  padding: 0.2rem 0.75rem;
+  border: 2px solid var(--primary-text-color);
+  border-radius: 999px;
+  background: rgba(219, 107, 67, 0.12);
+  font-size: 0.85rem;
+}
+
+.pin-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1.5rem 1.25rem;
+}
+
+.pin-modal__likes {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.pin-modal__actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto; /* esquina inferior derecha */
+}
+
+.pin-modal__action {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 2px solid var(--primary-text-color);
+  border-radius: 50%;
+  background: rgba(219, 107, 67, 0.12);
+  color: var(--primary-text-color);
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.pin-modal__action:hover:not(:disabled) {
+  background: rgba(219, 107, 67, 0.3);
+  transform: scale(1.08);
+}
+
+.pin-modal__action:focus-visible {
+  outline: 3px solid rgba(219, 107, 67, 0.45);
+  outline-offset: 2px;
+}
+
+.pin-modal__action:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Estado activo: ya diste like / guardaste / sigues al creador */
+.pin-modal__action.is-active {
+  background: var(--primary-text-color);
+  color: #fffdf5;
+}
