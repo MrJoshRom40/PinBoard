@@ -1,8 +1,10 @@
 import { startLocalStorage } from "./storage/startLocalStorage.js";
 import { attachContextMenu } from "./js/Components/ContextMenu.js";
+import { setupDeleteAll } from "./js/killer.js";
 
 /* ---------- Siembra de datos (antes de leer nada) ---------- */
 startLocalStorage();
+setupDeleteAll("./pages/login.html");
 
 /* ---------- Guardia de sesión ---------- */
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));

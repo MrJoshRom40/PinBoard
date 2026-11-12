@@ -1,9 +1,11 @@
 import { startLocalStorage } from "../storage/startLocalStorage.js";
 import { attachContextMenu } from "./Components/ContextMenu.js";
 import { Pin } from "./classes/Pin.js";
+import { setupDeleteAll } from "./killer.js";
 
 /* ---------- Siembra de datos (antes de leer nada) ---------- */
 startLocalStorage();
+setupDeleteAll("../pages/login.html");
 
 /* ---------- Guardia de sesión ---------- */
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
