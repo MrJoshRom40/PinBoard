@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../index.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <title>Add Pin</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="logo">PinBoard</h1>
+    </div>
+
+    <nav class="container" aria-label="Navegación principal">
+      <ul role="list">
+        <a href="../index.html">
+          <img src="../assets/svg/home_24dp_E3E3E3.svg" alt="home" />
+          <p>Home</p>
+        </a>
+        <a href="./Explore.html">
+          <img src="../assets/svg/explore_24dp_E3E3E3.svg" alt="explore" />
+          <p>Explore</p>
+        </a>
+        <a href="./Add.html" aria-current="page">
+          <img
+            src="../assets/svg/add_circle_outline_24dp_E3E3E3.svg"
+            alt="add"
+          />
+          <p>Add</p>
+        </a>
+        <a href="./Dashboard.html">
+          <img
+            src="../assets/svg/space_dashboard_24dp_E3E3E3.svg"
+            alt="your dashboard"
+          />
+          <p>Dashboard</p>
+        </a>
+      </ul>
+    </nav>
+
+    <main id="pin-container">
+      <form id="pin-form" class="pin-form" novalidate>
+        <h2>Create a Pin</h2>
+
+        <div class="form-field">
+          <label for="pin-name">Name</label>
+          <input
+            type="text"
+            id="pin-name"
+            maxlength="60"
+            placeholder="Ej. Gato sorprendido"
+            autocomplete="off"
+            required
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="pin-description">Description</label>
+          <textarea
+            id="pin-description"
+            rows="3"
+            maxlength="200"
+            placeholder="Cuéntanos de qué trata tu pin"
+            required
+          ></textarea>
+        </div>
+
+        <fieldset class="form-field">
+          <legend>Categories</legend>
+          <div id="category-options" class="category-options"></div>
+        </fieldset>
+
+        <div class="form-field">
+          <label for="pin-url">Image URL</label>
+          <input
+            type="url"
+            id="pin-url"
+            placeholder="https://..."
+            autocomplete="off"
+            required
+          />
+        </div>
+
+        <p id="form-error" class="form-error" role="alert" hidden></p>
+
+        <button type="submit" class="submit-button">Publish pin</button>
+
+        <figure id="preview-box" class="preview-box" hidden>
+          <img id="preview-image" alt="Vista previa del pin" />
+        </figure>
+      </form>
+    </main>
+
+    <footer class="container" id="userData">
+      <img id="user-icon" alt="User icon" />
+      <p id="username"></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="../js/add.js"></script>
+  </body>
+</html>
