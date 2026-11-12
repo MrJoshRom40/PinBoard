@@ -131,3 +131,33 @@ form button:focus-visible {
   outline: 3px solid var(--primary-text-color);
   outline-offset: 3px;
 }
+
+#icon-selector {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  justify-items: center;
+}
+
+img {
+  width: 6rem;
+  height: 6rem;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  border: 2px solid transparent;
+  border-radius: 100%;
+  transition: transform 0.3s ease-in-out;
+  border-color: var(--primary-text-color);
+}
+
+img:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+img.selected {
+  border-color: #db6b43;
+  transform: scale(1);
+}

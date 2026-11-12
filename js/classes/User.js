@@ -7,6 +7,7 @@ export class User {
     this.icon = icon; //Icon src representing the user's profile picture
     this.pinsCreated = []; //Array of Pin objects cretated by the user
     this.pinsSaved = []; //Array of Pin objects saved by the user
+    this.followers = []; //Array of User objects that follow the user
   }
 
   addPin(pin) {

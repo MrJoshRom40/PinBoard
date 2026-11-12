@@ -1,6 +1,7 @@
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const loginButton = document.getElementById("login-button");
+const registerButton = document.getElementById("register-button");
 
 loginButton.addEventListener("click", (event) => {
   event.preventDefault();
@@ -28,4 +29,9 @@ loginButton.addEventListener("click", (event) => {
       color: "#0f3c65",
     });
   }
+});
+
+registerButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  window.location.href = "./register.html";
 });
