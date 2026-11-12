@@ -31,7 +31,8 @@ div {
 }
 
 /* Tarjetas base */
-.container, .pin-container {
+.container,
+.pin-container {
   border: 2px solid var(--primary-text-color);
   border-radius: 1rem;
   background-color: var(--primary-color, #fffef5);
@@ -39,7 +40,6 @@ div {
   padding: 1rem;
   box-shadow: 0 10px 30px rgba(246, 169, 122, 0.5);
 }
-
 
 /* Logo / título (ya no afecta a los div de SweetAlert) */
 h1 {
@@ -254,7 +254,6 @@ footer p {
   }
 }
 
-
 .pin-gallery {
   width: 100%;
   min-width: 0;
@@ -281,4 +280,96 @@ footer p {
   max-height: 420px;
   object-fit: contain;
   border-radius: 12px;
+}
+
+/* ===== Perfil ===== */
+#profile-data {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  gap: 2.5rem;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1rem;
+}
+
+#profile-data img {
+  width: 12rem;
+  height: 12rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary-text-color);
+  box-shadow: 0 8px 20px rgba(246, 169, 122, 0.55);
+  transition: transform 0.3s ease;
+}
+
+#profile-data img:hover {
+  transform: scale(1.05);
+}
+
+#profile-data div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: 2rem;
+  row-gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+  font-family: var(--text-font);
+  color: var(--primary-text-color);
+}
+
+#profile-data h2 {
+  grid-column: 1;
+  grid-row: 1 / span 5;
+  margin: 0;
+  font-family: var(--tittle-font);
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+#profile-data p {
+  grid-column: 2;
+  margin: 0;
+  font-size: 1.1rem;
+  opacity: 0.8;
+  text-align: right;
+}
+
+hr {
+  width: 100%;
+  border: none;
+  height: 2px;
+  background-color: var(--primary-text-color);
+  opacity: 0.4;
+  margin: 0 0 1rem;
+}
+
+/* Perfil en móvil: se apila y se centra */
+@media (max-width: 700px) {
+  #profile-data {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  #profile-data img {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  #profile-data div {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  #profile-data h2,
+  #profile-data p {
+    grid-column: 1;
+    grid-row: auto;
+    text-align: center;
+  }
 }

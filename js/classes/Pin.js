@@ -5,7 +5,7 @@ export class Pin {
     this.image = image; //Image src
     this.likes = []; //Array of User objects who liked the pin
     this.comments = []; //Array of User objects who commented on the pin
-    this.user = user; //User who published the pin
+    this.user = user; //User id who published the pin
   }
 
   like(user) {

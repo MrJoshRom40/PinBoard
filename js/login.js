@@ -35,3 +35,5 @@ registerButton.addEventListener("click", (event) => {
   event.preventDefault();
   window.location.href = "./register.html";
 });
+
+console.log(currentUser);

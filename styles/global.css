@@ -9,3 +9,104 @@
   --primary-color: #fff2ba;
   --primary-text-color: #163a63;
 }
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 12px; /* para scroll horizontal */
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 10px;
+  border: 2px solid var(--scrollbar-track);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+.context-menu {
+  position: fixed;
+  z-index: 1000;
+  min-width: 11rem;
+  margin: 0;
+  padding: 0.35rem;
+  list-style: none;
+  background-color: var(--primary-color, #fffef5);
+  border: 2px solid var(--primary-text-color);
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 30px rgba(246, 169, 122, 0.5);
+  font-family: var(--text-font);
+  animation: context-menu-in 0.12s ease-out;
+  transform-origin: top left;
+}
+
+.context-menu[hidden] {
+  display: none;
+}
+
+@keyframes context-menu-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.context-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--primary-text-color);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.context-menu__item:hover,
+.context-menu__item:focus-visible {
+  background-color: rgba(219, 107, 67, 0.15);
+  outline: none;
+  cursor: pointer;
+}
+
+.context-menu__item:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: transparent;
+}
+
+.context-menu__item--danger {
+  color: #b23a2a;
+}
+
+.context-menu__item .material-symbols-outlined {
+  font-size: 1.25rem;
+}
+
+.context-menu__separator {
+  height: 2px;
+  margin: 0.3rem 0.5rem;
+  background-color: var(--primary-text-color);
+  opacity: 0.2;
+}
