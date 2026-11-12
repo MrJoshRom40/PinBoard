@@ -734,3 +734,93 @@ footer p {
   background: var(--primary-text-color);
   color: #fffdf5;
 }
+
+/* ===== Página de usuarios (admin) ===== */
+.users-page {
+  box-sizing: border-box;
+  padding: 1.5rem 2rem;
+  font-family: var(--text-font);
+  color: var(--primary-text-color);
+}
+
+.users-page h2 {
+  margin: 0;
+  font-family: var(--tittle-font);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.users-hint {
+  margin: 0.25rem 0 1.25rem;
+  opacity: 0.65;
+}
+
+.user-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: 1rem;
+}
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.25rem 1rem;
+  border: 2px solid var(--primary-text-color);
+  border-radius: 1rem;
+  background-color: var(--primary-color, #fffef5);
+  box-shadow: 0 10px 30px rgba(246, 169, 122, 0.5);
+  text-align: center;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-3px);
+}
+
+.user-card__avatar {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary-text-color);
+  -webkit-user-drag: none;
+}
+
+.user-card__name {
+  margin: 0;
+  font-weight: bolder;
+  font-size: 1.15rem;
+  overflow-wrap: anywhere;
+}
+
+.user-card__email {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  overflow-wrap: anywhere;
+}
+
+.user-card__status {
+  padding: 0.15rem 0.8rem;
+  border: 2px solid var(--primary-text-color);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: bolder;
+  background: rgba(88, 205, 95, 0.35);
+}
+
+/* Usuario dormido: tarjeta atenuada */
+.user-card.is-sleeping {
+  opacity: 0.6;
+}
+
+.user-card.is-sleeping .user-card__avatar {
+  filter: grayscale(1);
+}
+
+.user-card.is-sleeping .user-card__status {
+  background: rgba(219, 107, 67, 0.35);
+}

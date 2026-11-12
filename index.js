@@ -360,7 +360,7 @@ function addAdminOptions() {
   list.insertAdjacentHTML(
     "beforeend",
     `
-    <a href="/users">
+    <a href="./pages/Users.html">
       <img src="./assets/svg/manage_accounts_24dp_163A63_FILL0_wght400_GRAD0_opsz24.svg" alt="users" />
       <p>Users</p>
     </a>
