@@ -445,3 +445,16 @@ footer p {
     text-align: center;
   }
 }
+
+/* ===== Pestañas de categorías (Explore) ===== */
+#category-tabs {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-top: 0.5rem;
+}
+
+#category-tabs .tab {
+  flex-shrink: 0;
+  white-space: nowrap;
+}

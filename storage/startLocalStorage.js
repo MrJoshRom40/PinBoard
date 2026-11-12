@@ -48,6 +48,7 @@ export function startLocalStorage() {
         "https://i.pinimg.com/originals/1a/fb/aa/1afbaae40d6471fc85438e7df52bf1d0.jpg",
         "d45272c0-2e83-480d-aeef-213e66a71671",
         1,
+        ["Animales", "Chistosas"],
       ),
       new Pin(
         "Flor",
@@ -55,6 +56,7 @@ export function startLocalStorage() {
         "https://tse3.mm.bing.net/th/id/OIP.jv5V9fl3iyYRi4_afCHYcAHaE7?r=0&w=2000&h=1333&rs=1&pid=ImgDetMain&o=7&rm=3",
         "fcadab9e-fa76-44df-b46c-1c894d23fe29",
         2,
+        ["AI"],
       ),
       new Pin(
         "Calamardo guapo",
@@ -62,6 +64,7 @@ export function startLocalStorage() {
         "https://i.pinimg.com/originals/cd/25/fd/cd25fd373c370bffebe5a9743c907299.jpg",
         "d45272c0-2e83-480d-aeef-213e66a71671",
         3,
+        ["Chistosas", "Arte"],
       ),
       new Pin(
         "Akaza",
@@ -69,6 +72,7 @@ export function startLocalStorage() {
         "https://tse1.mm.bing.net/th/id/OIP.2O-9C4tr2ibA-xdUdpxcrAHaLG?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
         "fcadab9e-fa76-44df-b46c-1c894d23fe29",
         4,
+        ["Anime", "Arte"],
       ),
       new Pin(
         "Gato",
@@ -76,6 +80,7 @@ export function startLocalStorage() {
         "https://pbs.twimg.com/profile_images/1717824815711879168/CWPKCNng_400x400.jpg",
         "948eefcc-bb7b-49e3-a3e3-e6ff6ae874f6",
         5,
+        ["Animales", "Chistosas"],
       ),
       new Pin(
         "Carro IA",
@@ -83,6 +88,7 @@ export function startLocalStorage() {
         "https://tse3.mm.bing.net/th/id/OIP.A79mpHiXQcRSh_-oCQv2WQHaDt?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
         "d45272c0-2e83-480d-aeef-213e66a71671",
         6,
+        ["AI"],
       ),
       new Pin(
         "Perro que rie",
@@ -90,6 +96,7 @@ export function startLocalStorage() {
         "https://i.pinimg.com/originals/2d/08/b0/2d08b0fd5cb36b6d1c468e621ca220e5.jpg",
         "948eefcc-bb7b-49e3-a3e3-e6ff6ae874f6",
         7,
+        ["Animales", "Chistosas"],
       ),
       new Pin(
         "Edificios",
@@ -97,6 +104,7 @@ export function startLocalStorage() {
         "https://hdwallpaperim.com/wp-content/uploads/2017/08/24/100296-urban-city.jpg",
         "948eefcc-bb7b-49e3-a3e3-e6ff6ae874f6",
         8,
+        ["Paisajes", "Arte"],
       ),
       new Pin(
         "wallpaper celular",
@@ -104,6 +112,7 @@ export function startLocalStorage() {
         "https://wallpapercave.com/wp/wp5550777.jpg",
         "d45272c0-2e83-480d-aeef-213e66a71671",
         9,
+        ["AI", "Arte"],
       ),
       new Pin(
         "Evangelion",
@@ -111,6 +120,7 @@ export function startLocalStorage() {
         "https://tse4.mm.bing.net/th/id/OIP.pdmt-bywYH2QJnr6fi_24QHaF7?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
         "948eefcc-bb7b-49e3-a3e3-e6ff6ae874f6",
         10,
+        ["Arte"],
       ),
       new Pin(
         "Attack on titan",
@@ -118,8 +128,29 @@ export function startLocalStorage() {
         "https://tse3.mm.bing.net/th/id/OIP.WEynbQZGXy0bWDah4e6KdAHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
         "948eefcc-bb7b-49e3-a3e3-e6ff6ae874f6",
         11,
+        ["Arte", "Paisajes"],
+      ),
+      new Pin(
+        "Gato Burguer",
+        "Gatillo hambuerguesero",
+        "https://i.pinimg.com/736x/7e/9b/81/7e9b81180613a52a4b41c3a4e709cc88.jpg",
+        "948eefcc-bb7b-49e3-a3e3-e6ff6ae874f6",
+        11,
+        ["Animales", "Comida"],
       ),
     ];
     localStorage.setItem("pins", JSON.stringify(pins));
+  }
+
+  if (localStorage.getItem("categories") === null) {
+    const categories = [
+      "Animales",
+      "Arte",
+      "AI",
+      "Chistosas",
+      "Paisajes",
+      "Comida",
+    ];
+    localStorage.setItem("categories", JSON.stringify(categories));
   }
 }
