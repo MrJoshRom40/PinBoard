@@ -6,15 +6,7 @@ export class User {
     this.email = email;
     this.type = type;
     this.icon = icon; //Icon src representing the user's profile picture
-    this.pinsSaved = []; //Array of Pin objects saved by the user
+    this.pinsSaved = []; //Array of Pin id saved by the user
     this.followers = []; //Array of User id that follow the user
-  }
-
-  addPin(pin) {
-    this.pins.push(pin);
-  }
-
-  removePin(pin) {
-    this.pins = this.pins.filter((p) => p !== pin);
   }
 }

@@ -46,15 +46,12 @@ registerButton.addEventListener("click", (event) => {
 
   const users = JSON.parse(localStorage.getItem("users") || "[]");
   const equalUsername = users.some((u) => u.username === username);
-  const equalEmail = users.some((u) => u.email === email);
 
-  if (equalUsername || equalEmail) {
+  if (equalUsername) {
     Swal.fire({
       icon: "error",
       title: "Oops...",
-      text: equalUsername
-        ? "You can't use that username!"
-        : "You can't use that email!",
+      text: "You can't use that username!",
       confirmButtonColor: "#d9693f",
       confirmButtonText: "Try Again",
       background: "#fffdf5",
