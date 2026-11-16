@@ -135,7 +135,7 @@ export function startLocalStorage() {
         "Gatillo hambuerguesero",
         "https://i.pinimg.com/736x/7e/9b/81/7e9b81180613a52a4b41c3a4e709cc88.jpg",
         "948eefcc-bb7b-49e3-a3e3-e6ff6ae874f6",
-        11,
+        12,
         ["Animales", "Comida"],
       ),
     ];
