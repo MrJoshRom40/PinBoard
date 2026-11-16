@@ -1,0 +1,256 @@
+/* ===== About us ===== */
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  /* espacio para que no se corten las sombras de las tarjetas */
+  padding: 0.25rem 0.5rem 1rem;
+  font-family: var(--text-font);
+  color: var(--primary-text-color);
+}
+
+/* Tarjeta base: mismo lenguaje visual que .container */
+.about-card {
+  box-sizing: border-box;
+  padding: 1.5rem 2rem;
+  border: 2px solid var(--primary-text-color);
+  border-radius: 1rem;
+  background-color: var(--primary-color, #fffef5);
+  box-shadow: 0 10px 30px rgba(246, 169, 122, 0.5);
+}
+
+.about-card__title {
+  margin: 0 0 1rem;
+  font-family: var(--tittle-font);
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  font-weight: normal;
+}
+
+.about p {
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* ----- Presentación ----- */
+.about-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.about-hero__text {
+  max-width: 38rem;
+}
+
+.about-hero h2 {
+  margin: 0 0 0.75rem;
+  font-family: var(--tittle-font);
+  font-weight: normal;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.1;
+}
+
+.about-hero p {
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+/* Pines apilados, solo decoración */
+.about-hero__stack {
+  position: relative;
+  flex-shrink: 0;
+  width: 11rem;
+  height: 11rem;
+}
+
+.stack-pin {
+  position: absolute;
+  border: 2px solid var(--primary-text-color);
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(22, 58, 99, 0.18);
+}
+
+.stack-pin--a {
+  top: 0;
+  left: 0.5rem;
+  width: 6rem;
+  height: 8rem;
+  background: #d9693f;
+  transform: rotate(-8deg);
+}
+
+.stack-pin--b {
+  top: 1.5rem;
+  right: 0;
+  width: 6rem;
+  height: 5rem;
+  background: var(--primary-text-color);
+  transform: rotate(6deg);
+}
+
+.stack-pin--c {
+  bottom: 0;
+  left: 3rem;
+  width: 5rem;
+  height: 5.5rem;
+  background: #f6a97a;
+  transform: rotate(-2deg);
+}
+
+/* ----- Funciones ----- */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature h4 {
+  margin: 0.75rem 0 0.25rem;
+  font-size: 1.15rem;
+}
+
+.feature p {
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+/* Mismo círculo que los botones del modal de pin */
+.feature__icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid var(--primary-text-color);
+  border-radius: 50%;
+  background: rgba(219, 107, 67, 0.12);
+  font-size: 1.6rem;
+  user-select: none;
+}
+
+/* ----- Pasos (sí es una secuencia) ----- */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+  max-width: 46rem;
+}
+
+.steps li {
+  position: relative;
+  min-height: 2.5rem;
+  padding-left: 3.5rem;
+  line-height: 1.5;
+  counter-increment: step;
+}
+
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--primary-text-color);
+  color: #fffdf5;
+  font-weight: bolder;
+}
+
+.steps strong {
+  display: block;
+}
+
+/* ----- Contacto ----- */
+.about-contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.about-contact .about-card__title {
+  margin-bottom: 0.5rem;
+}
+
+.about-contact p {
+  max-width: 34rem;
+  opacity: 0.85;
+}
+
+.about-contact__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  padding: 0.8rem 1.5rem;
+  border: 2px solid var(--primary-text-color);
+  border-radius: 0.75rem;
+  background: #d9693f;
+  color: #fffdf5;
+  font-weight: bolder;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+.about-contact__button:hover {
+  transform: scale(1.02);
+  filter: brightness(1.05);
+}
+
+.about-contact__button:focus-visible {
+  outline: 3px solid rgba(219, 107, 67, 0.45);
+  outline-offset: 2px;
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 1024px) {
+  .about-card {
+    padding: 1.25rem 1.5rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .about {
+    gap: 0.75rem;
+    padding: 0.25rem 0.25rem 0.75rem;
+  }
+
+  .about-card {
+    padding: 1rem;
+  }
+
+  .about-hero,
+  .about-contact {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .about-hero__stack {
+    align-self: center;
+    width: 9rem;
+    height: 9rem;
+  }
+
+  .about-contact__button {
+    align-self: stretch;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-contact__button {
+    transition: none;
+  }
+}

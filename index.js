@@ -145,7 +145,7 @@ function getActions(pin) {
 /* ---------- Eventos ---------- */
 logo.addEventListener("click", (event) => {
   event.preventDefault();
-  window.location.href = "/";
+  window.location.href = "../pages/AboutUs.html";
 });
 
 attachContextMenu(footer, () => [

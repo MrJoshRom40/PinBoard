@@ -164,7 +164,7 @@ form.addEventListener("submit", (event) => {
 /* ---------- Eventos generales ---------- */
 logo.addEventListener("click", (event) => {
   event.preventDefault();
-  window.location.href = "../index.html";
+  window.location.href = "../pages/AboutUs.html";
 });
 
 attachContextMenu(footer, () => [
@@ -191,7 +191,7 @@ if (currentUser.type === "admin") {
   list.insertAdjacentHTML(
     "beforeend",
     `
-    <a href="/users">
+    <a href="./Users.html">
       <img src="../assets/svg/manage_accounts_24dp_163A63_FILL0_wght400_GRAD0_opsz24.svg" alt="users" />
       <p>Users</p>
     </a>

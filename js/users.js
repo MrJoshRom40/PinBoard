@@ -175,7 +175,7 @@ function renderUsers() {
 /* ---------- Eventos generales ---------- */
 logo.addEventListener("click", (event) => {
   event.preventDefault();
-  window.location.href = "../index.html";
+  window.location.href = "../pages/AboutUs.html";
 });
 
 attachContextMenu(footer, () => [

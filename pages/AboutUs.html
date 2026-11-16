@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="../styles/aboutUs.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <title>About us</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="logo">PinBoard</h1>
+    </div>
+
+    <nav class="container" aria-label="Navegación principal">
+        <ul role="list">
+            <a href="../index.html">
+                <img src="../assets/svg/home_24dp_E3E3E3.svg" alt="home" />
+                <p>Home</p>
+            </a>
+            <a href="./Explore.html">
+                <img src="../assets/svg/explore_24dp_E3E3E3.svg" alt="explore" />
+                <p>Explore</p>
+            </a>
+            <a href="./Add.html">
+                <img src="../assets/svg/add_circle_outline_24dp_E3E3E3.svg" alt="add" />
+                <p>Add</p>
+            </a>
+            <a href="./Dashboard.html">
+                <img src="../assets/svg/space_dashboard_24dp_E3E3E3.svg" alt="your dashboard" />
+                <p>Dashboard</p>
+            </a>
+        </ul>
+    </nav>
+
+    <main class="about" aria-labelledby="about-title">
+        <!-- Presentación -->
+        <section class="about-card about-hero">
+            <div class="about-hero__text">
+                <h2 id="about-title">Sobre nosotros</h2>
+                <p>
+                    PinBoard es un espacio donde subes imágenes, las ordenas por
+                    categorías y descubres lo que otras personas comparten. Todo en un
+                    solo lugar.
+                </p>
+            </div>
+
+            <!-- Pines decorativos hechos solo con CSS -->
+            <div class="about-hero__stack" aria-hidden="true">
+                <span class="stack-pin stack-pin--a"></span>
+                <span class="stack-pin stack-pin--b"></span>
+                <span class="stack-pin stack-pin--c"></span>
+            </div>
+        </section>
+
+        <!-- Qué puedes hacer -->
+        <section class="about-card" aria-labelledby="features-title">
+            <h3 id="features-title" class="about-card__title">
+                Qué puedes hacer en PinBoard
+            </h3>
+            <ul class="feature-grid" role="list">
+                <li class="feature">
+                    <span class="feature__icon material-symbols-outlined" aria-hidden="true">explore</span>
+                    <h4>Explorar</h4>
+                    <p>Recorre los pines de la comunidad y filtra por categoría.</p>
+                </li>
+                <li class="feature">
+                    <span class="feature__icon material-symbols-outlined" aria-hidden="true">add_circle</span>
+                    <h4>Crear pines</h4>
+                    <p>Sube una imagen, ponle título, descripción y categorías.</p>
+                </li>
+                <li class="feature">
+                    <span class="feature__icon material-symbols-outlined" aria-hidden="true">favorite</span>
+                    <h4>Dar like</h4>
+                    <p>Haz clic sobre el corazón de un pin para marcarlo como favorito.</p>
+                </li>
+                <li class="feature">
+                    <span class="feature__icon material-symbols-outlined" aria-hidden="true">bookmark</span>
+                    <h4>Guardar y seguir</h4>
+                    <p>Guarda los pines que te gustan y sigue a sus creadores.</p>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Cómo funciona (sí es una secuencia, por eso va numerada) -->
+        <section class="about-card" aria-labelledby="steps-title">
+            <h3 id="steps-title" class="about-card__title">Cómo empezar</h3>
+            <ol class="steps">
+                <li>
+                    <strong>Sube tu primera imagen.</strong>
+                    Entra a <em>Add</em> y elige el archivo; verás una vista previa antes
+                    de publicar.
+                </li>
+                <li>
+                    <strong>Elige sus categorías.</strong>
+                    Así otras personas la encontrarán en <em>Explore</em>.
+                </li>
+                <li>
+                    <strong>Mira lo que pasa con tus pines.</strong>
+                    En <em>Dashboard</em> encuentras todo lo que has creado y guardado.
+                </li>
+            </ol>
+        </section>
+
+        <!-- Creadores -->
+        <section class="about-card" aria-labelledby="features-title">
+            <h3 id="features-title" class="about-card__title">
+                Creadores de PinBoard
+            </h3>
+            <ul class="feature-grid" role="list">
+                <li class="feature">
+                    <img class="feature__icon" src="../assets/svg/girl.svg" alt="" />
+                    <h4>Valeria Estrada Cabañas</h4>
+                    <p>25110124</p>
+                </li>
+                <li class="feature">
+                    <img class="feature__icon" src="../assets/svg/boy1.svg" alt="" />
+                    <h4>Héctor Joshua Castañeda Andrade</h4>
+                    <p>25110125</p>
+                </li>
+                <li class="feature">
+                    <img class="feature__icon" src="../assets/svg/boy2.svg" alt="" />
+                    <h4>Joshua Alejandro Romo Cuarennta</h4>
+                    <p>25110130</p>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="container" id="userData">
+        <img id="user-icon" alt="User icon" />
+        <p id="username"></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="../js/aboutUs.js"></script>
+
+</body>
+
+</html>
